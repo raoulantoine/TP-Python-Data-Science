@@ -5,6 +5,7 @@
 import json
 import os
 import csv
+import re
 
 
 with open('departements-france.csv', newline='') as csvfile:
@@ -23,11 +24,19 @@ with open('departements-france.csv', newline='') as csvfile:
 
 
 # creation des fiches monuments
-# creation des fiches monuments
+# expression régulière qui matchera sur un nom de roi
 with open('liste-des-immeubles-proteges-au-titre-des-monuments-historiques.json') as j:
-    monument = json.dumps(j, default=str, encoding='utf8=True)
+    monument = json.dumps(j, default=str)
     for row in monument:
-        fichier = open("cible/" + row['fields']['reg'] + "/" + row['fields']
-                       ['dpt_lettre'] + "/" + row['fields']['tico'] + ".txt", 'wt')
-        fichier.writelines(row['fields']['reg'])
-        fichier.close()
+        def isRoi(string):
+        str = String
+    match = re.search('Hugues|Robert|Henri|Philippe|Louis|Jean|Charles', str)
+    if match:
+        result = True
+    else:
+        result = False
+    return result
+    fichier = open("cible/" + row['fields']['reg'] + "/" + row['fields']
+                   ['dpt_lettre'] + "/" + row['fields']['tico'] + ".txt", 'wt')
+    fichier.writelines(row['fields']['reg'])
+    fichier.close()
