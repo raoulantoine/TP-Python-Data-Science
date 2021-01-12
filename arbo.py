@@ -1,7 +1,11 @@
-import re
-import csv
-import os
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+
 import json
+import os
+import csv
+
 
 with open('departements-france.csv', newline='') as csvfile:
     reader = csv.DictReader(csvfile)
@@ -19,8 +23,9 @@ with open('departements-france.csv', newline='') as csvfile:
 
 
 # creation des fiches monuments
+# creation des fiches monuments
 with open('liste-des-immeubles-proteges-au-titre-des-monuments-historiques.json') as j:
-    monument = json.load(j)
+    monument = json.dumps(j, default=str, encoding='utf8=True)
     for row in monument:
         fichier = open("cible/" + row['fields']['reg'] + "/" + row['fields']
                        ['dpt_lettre'] + "/" + row['fields']['tico'] + ".txt", 'wt')
